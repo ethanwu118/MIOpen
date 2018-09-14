@@ -93,6 +93,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MIOpen Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">09/14/2018 [ 1.5.0 ]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#">07/30/2018 [ 1.4.2 ]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#">07/19/2018 [ 1.4.1 ]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#">07/06/2018 [ 1.4.0 ]</a></li>
@@ -367,7 +368,38 @@
   <div class="section" id="miopen-release-notes">
 <span id="miopen-release-notes"></span><h1>MIOpen Release notes<a class="headerlink" href="#miopen-release-notes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="">
-<span id="id1"></span><h2>07/30/2018 [ 1.4.2 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>09/14/2018 [ 1.5.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<p>Notes:</p>
+<ul class="simple">
+<li>A new kernel fusion API is now available for inference for convolution, bias,
+batch normalization, and activations.</li>
+<li>This release includes new features and bug fixes</li>
+<li>Group and Depthwise convolutions are now available</li>
+<li>3D Batch Normalization has been implemented for fully packed tensors</li>
+<li>Dilation for convolutions have been implemented</li>
+</ul>
+<p>Changes:</p>
+<ul class="simple">
+<li>Fixed bugs in direct convolutions</li>
+<li>Fixed issue with paths when $HOME variable is not set</li>
+<li>Fixed padding issues with 1x1 convolutions</li>
+<li>Added incremental support for fp16</li>
+<li>Added fused kernels for Winograd and direct with bias and activations</li>
+<li>Added a getting started guide for kernel fusion.</li>
+<li>Added group and depthwise API for convolutions</li>
+<li>Added 3-D batch normalization support with 5-D tensors</li>
+<li>Improved max pooling performance</li>
+<li>Improved debug and error reporting information</li>
+<li>Improved documentation for convolutions</li>
+</ul>
+<p>Known Issues:</p>
+<ul class="simple">
+<li>RNNs do not support fp16</li>
+<li>Training with CNNs does not support fp16</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h2>07/30/2018 [ 1.4.2 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <p>Notes:</p>
 <ul class="simple">
 <li>This release is a hot-fix to enable ICNet and PSPNet</li>
@@ -381,7 +413,7 @@ For more information on the performance database, see: https://rocmsoftwareplatf
 </ul>
 </div>
 <div class="section" id="">
-<span id="id2"></span><h2>07/19/2018 [ 1.4.1 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>07/19/2018 [ 1.4.1 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <p>Notes:</p>
 <ul class="simple">
 <li>This release includes a bug fix for 3x3 convolutions</li>
@@ -396,7 +428,7 @@ For more information on the performance database, see: https://rocmsoftwareplatf
 </ul>
 </div>
 <div class="section" id="">
-<span id="id3"></span><h2>07/06/2018 [ 1.4.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>07/06/2018 [ 1.4.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <p>Notes:</p>
 <ul class="simple">
 <li>This release includes a number of performance improvements and bug fixes</li>
@@ -434,7 +466,7 @@ For more information on the performance database, see: https://rocmsoftwareplatf
 </ul>
 </div>
 <div class="section" id="">
-<span id="id4"></span><h2>03/30/2018 [ 1.3.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>03/30/2018 [ 1.3.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <p>Notes:</p>
 <ul class="simple">
 <li>Performance improvements for RNNs</li>
@@ -461,14 +493,14 @@ For more information on the performance database, see: https://rocmsoftwareplatf
 </ul>
 </div>
 <div class="section" id="">
-<span id="id5"></span><h2>03/08/2018 [ 1.2.1 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>03/08/2018 [ 1.2.1 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <p>Notes:</p>
 <ul class="simple">
 <li>This release adds support for ROCm 1.7.1.</li>
 </ul>
 </div>
 <div class="section" id="">
-<span id="id6"></span><h2>12/15/2017 [ 1.2.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2>12/15/2017 [ 1.2.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <p>Notes:</p>
 <ul class="simple">
 <li>This release adds the support for recurrent neural networks (RNNs) for three flavors - Vanilla, LSTMs, and GRU</li>
@@ -491,7 +523,7 @@ For more information on the performance database, see: https://rocmsoftwareplatf
 </ul>
 </div>
 <div class="section" id="">
-<span id="id7"></span><h2>09/08/2017 [ 1.1.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h2>09/08/2017 [ 1.1.0 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <p>Notes:</p>
 <ul class="simple">
 <li>The scaling parameter alpha and shift parameter beta for layers kernels are only supported for alpha = 1 and beta = 0.
@@ -511,7 +543,7 @@ The exceptions to this are for miopenOptTensor, miopenConvolutionForwardBias, an
 </ul>
 </div>
 <div class="section" id="">
-<span id="id8"></span><h2>08/27/2017 [ 1.0.2 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2>08/27/2017 [ 1.0.2 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Fixed 1x1 forward and backward convolutions for large input</li>
 <li>Fixed pooling MIOpendriver</li>
@@ -520,7 +552,7 @@ The exceptions to this are for miopenOptTensor, miopenConvolutionForwardBias, an
 </ul>
 </div>
 <div class="section" id="">
-<span id="id9"></span><h2>07/26/2017 [ 1.0.1 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>07/26/2017 [ 1.0.1 ]<a class="headerlink" href="#" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Added dilation support for convolutions</li>
 <li>Added unit-tests for Softmax</li>

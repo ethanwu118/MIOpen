@@ -1,4 +1,4 @@
-# MIOpen
+# Build and Install Instructions
 
 AMD's library for high peformance machine learning primitives. MIOpen supports two programming models - 
 1. OpenCL 

@@ -93,6 +93,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="releasenotes.html">MIOpen Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#">09/14/2018 [ 1.5.0 ]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="releasenotes.html#">07/30/2018 [ 1.4.2 ]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="releasenotes.html#">07/19/2018 [ 1.4.1 ]</a></li>
 <li class="toctree-l2"><a class="reference internal" href="releasenotes.html#">07/06/2018 [ 1.4.0 ]</a></li>
@@ -105,7 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="releasenotes.html#initial-release">06/30/2017 [ 1.0.0 ] Initial release</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">MIOpen</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Build and Install Instructions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="install.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#installing-the-dependencies">Installing the dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#installing-miopen-with-pre-built-packages">Installing MIOpen with pre-built packages</a></li>
@@ -147,12 +148,12 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-fusion-plan">Create a Fusion Plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-and-add-operators">Create and add Operators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-name-compile-fusion-a-compile-the-fusion-plan"><a name="compile_fusion"></a>Compile the Fusion Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compile-the-fusion-plan">Compile the Fusion Plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#set-the-runtime-arguments">Set the runtime arguments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#execute-a-fusion-plan">Execute a Fusion Plan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cleanup">Cleanup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-name-supported-fusions-a-supported-fusions"><a name="supported_fusions"></a> Supported Fusions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-name-supported-fusions-a-performance-comparison-to-non-fused-kernels"><a name="supported_fusions"></a> Performance Comparison to Non-Fused Kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-fusions">Supported Fusions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-comparison-to-non-fused-kernels">Performance Comparison to Non-Fused Kernels</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="apireference.html">API Reference</a><ul>
@@ -443,8 +444,8 @@
 <p>It may be noted that <code class="docutils literal notranslate"><span class="pre">conv_desc</span></code> is the regular MIOpen Convolution descriptor and is created in the standard way before it is referenced here. For more details on creating and setting the convolution descriptor please refer to the example code as well as the <a class="reference external" href="https://rocmsoftwareplatform.github.io/MIOpen/doc/html/convolution.html">MIOpen documentation</a>. In the above snippet <code class="docutils literal notranslate"><span class="pre">weights.desc</span></code> refers to the <code class="docutils literal notranslate"><span class="pre">miopenTensorDescriptor_t</span></code> for the convolution operations and <code class="docutils literal notranslate"><span class="pre">bias.desc</span></code> refers to the object of the same type for the bias operation. The order of insertion of operators indicates the order in which the operations would be performed on the data. Therefore, the above code implies that the convolution operation would be the first operation to execute on the incoming data, followed by the bias and activation operations.</p>
 <p>During this process, it is important that the returned codes be checked to make sure that the operations as well as their order is supported. The operator insertion might fail for a number of reasons such as unsupported sequence of operations, unsupported dimensions of the input or in case of convolution unsupported dimensions for the filters. In the above example, these aspects are ignored for the sake of simplicity.</p>
 </div>
-<div class="section" id="a-name-compile-fusion-a-compile-the-fusion-plan">
-<span id="a-name-compile-fusion-a-compile-the-fusion-plan"></span><h2><a name="compile_fusion"></a>Compile the Fusion Plan<a class="headerlink" href="#a-name-compile-fusion-a-compile-the-fusion-plan" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="compile-the-fusion-plan">
+<span id="compile-the-fusion-plan"></span><h2>Compile the Fusion Plan<a class="headerlink" href="#compile-the-fusion-plan" title="Permalink to this headline">¶</a></h2>
 <p>Following the operator addition, the user would compile the fusion plan, to populate the MIOpen kernel cache with the fused kernel and make it ready for execution. The API call that accomplishes this is:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">miopenStatus_t</span>
 <span class="nf">miopenCompileFusionPlan</span><span class="p">(</span><span class="n">miopenHandle_t</span> <span class="n">handle</span><span class="p">,</span> <span class="n">miopenFusionPlanDescriptor_t</span> <span class="n">fusePlanDesc</span><span class="p">);</span>
@@ -531,8 +532,8 @@
 </div>
 <p>Once the fusion plan object is destroyed, all the operations created are destroyed automatically and do not need any special cleanup.</p>
 </div>
-<div class="section" id="a-name-supported-fusions-a-supported-fusions">
-<span id="a-name-supported-fusions-a-supported-fusions"></span><h2><a name="supported_fusions"></a> Supported Fusions<a class="headerlink" href="#a-name-supported-fusions-a-supported-fusions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="supported-fusions">
+<span id="supported-fusions"></span><h2>Supported Fusions<a class="headerlink" href="#supported-fusions" title="Permalink to this headline">¶</a></h2>
 <p>The table below outlines the supported fusions as well as any applicable constraints. Currently, only convolutions with unit stride and unit dilation are supported. Currently, the fusion API is in the initial phases of development and may change.</p>
 <table border=0 cellpadding=0 cellspacing=0 width=713 style='border-collapse:
  collapse;table-layout:fixed;width:534pt'>
@@ -582,8 +583,8 @@
   <td class=xl66 width=87 style='width:65pt'>Padding not supported</td>
  </tr>
 </table></div>
-<div class="section" id="a-name-supported-fusions-a-performance-comparison-to-non-fused-kernels">
-<span id="a-name-supported-fusions-a-performance-comparison-to-non-fused-kernels"></span><h2><a name="supported_fusions"></a> Performance Comparison to Non-Fused Kernels<a class="headerlink" href="#a-name-supported-fusions-a-performance-comparison-to-non-fused-kernels" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="performance-comparison-to-non-fused-kernels">
+<span id="performance-comparison-to-non-fused-kernels"></span><h2>Performance Comparison to Non-Fused Kernels<a class="headerlink" href="#performance-comparison-to-non-fused-kernels" title="Permalink to this headline">¶</a></h2>
 <p>The following graph depicts the speedup gained for a fused Convolution+Bias+Activation over a non-fused version, all configurations have a batch size of 64:</p>
 <p><img alt="CBA Graph" src="_images/cba.png" /></p>
 <p>Speedup obtained by fusing Batchnorm (spatial mode) with Activation are presented in the graph below:</p>
